@@ -1,32 +1,48 @@
-# React + TypeScript + Vite
+# Weather Maps
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + TypeScript weather application that combines a map-based interface with current conditions, hourly forecasts, and multi-day weather details.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Interactive map for selecting a location
+- Current weather card with temperature and conditions
+- Hourly forecast summary
+- Daily forecast section
+- Additional weather information such as humidity, wind, and visibility
+- Responsive layout built with React and Tailwind
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Leaflet and react-leaflet
+- OpenWeather API
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+1. Install dependencies:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+2. Create a `.env` file in the project root and add your OpenWeather API key:
+
+```bash
+VITE_API_KEY=your_api_key
+```
+
+3. Start the app in development mode:
+
+```bash
+npm run dev
+```
+
+4. Open the local URL shown in the terminal to view the app.
+
+## Notes
+
+- This project was made using a support material. You can access it [here](https://youtu.be/M-iV9R3kLNA?si=FfYQupwby2NDozpT)
+
