@@ -1,0 +1,20 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+
+type Props = {}
+
+const LocationDropdown = (props: Props) => {
+   return (
+      <Select>
+         <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Theme" />
+         </SelectTrigger>
+         <SelectContent>
+            <SelectItem value="light">Light</SelectItem>
+            <SelectItem value="dark">Dark</SelectItem>
+            <SelectItem value="light">Dark</SelectItem>
+         </SelectContent>
+      </Select>
+   )
+}
+
+export default LocationDropdown
