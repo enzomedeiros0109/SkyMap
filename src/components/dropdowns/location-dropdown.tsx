@@ -9,12 +9,27 @@ const LocationDropdown = (props: Props) => {
             <SelectValue placeholder="Theme" />
          </SelectTrigger >
          <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
+            {locations.map((location) => (
+               <SelectItem key={location} value={location}>
+                  {location}
+               </SelectItem>
+            ))}
          </SelectContent>
       </Select>
    )
 }
+
+const locations = [
+  "Washington, D.C.",
+  "Beijing",
+  "Moscow",
+  "London",
+  "Paris",
+  "Tokyo",
+  "New Delhi",
+  "Berlin",
+  "Cairo",
+  "Brasília",
+];
 
 export default LocationDropdown
