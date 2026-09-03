@@ -13,6 +13,11 @@ const LocationDropdown = ({ location, setLocation }: Props) => {
             <SelectValue placeholder="Main cities" />
          </SelectTrigger >
          <SelectContent>
+            {location === 'custom' &&
+               <SelectItem value='custom'>
+                  Custom
+               </SelectItem>
+            }
             {cities.map((city) => (
                <SelectItem key={city} value={city}>
                   {city}
@@ -24,16 +29,16 @@ const LocationDropdown = ({ location, setLocation }: Props) => {
 }
 
 const cities = [
-  "Washington, D.C.",
-  "Beijing",
-  "Moscow",
-  "London",
-  "Paris",
-  "Tokyo",
-  "New Delhi",
-  "Berlin",
-  "Cairo",
-  "Brasília",
+   "Washington, D.C.",
+   "Beijing",
+   "Moscow",
+   "London",
+   "Paris",
+   "Tokyo",
+   "New Delhi",
+   "Berlin",
+   "Cairo",
+   "Brasília",
 ];
 
 export default LocationDropdown

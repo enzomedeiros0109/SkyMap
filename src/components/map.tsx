@@ -6,16 +6,17 @@ import { API_KEY } from "@/api/api"
 type Props = {
    coords: Coords
    onMapClick: (lat: number, lon: number) => void
+   mapType: string
 }
 
-const Map = ({ coords, onMapClick }: Props) => {
+const Map = ({ coords, onMapClick, mapType }: Props) => {
    const { lat, lon } = coords
    return (
       <MapContainer
          center={[lat, lon]}
          zoom={5}
          scrollWheelZoom={false}
-         style={{ width: '700px', height: '500px' }}
+         style={{ width: '1000px', height: '500px' }}
       >
 
          <MapClick onMapClick={onMapClick} coords={coords} />
@@ -23,11 +24,11 @@ const Map = ({ coords, onMapClick }: Props) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
          />
-         {/* <TileLayer
-            url={`https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid=${API_KEY}`}
-         > */}
+         <TileLayer
+            url={`https://tile.openweathermap.org/map/${mapType}/{z}/{x}/{y}.png?appid=${API_KEY}`}
+         >
 
-         {/* </TileLayer> */}
+         </TileLayer>
          <Marker position={[lat, lon]} />
       </MapContainer>
    )
