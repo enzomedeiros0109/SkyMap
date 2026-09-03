@@ -2,13 +2,13 @@ import type { Dispatch, SetStateAction } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 
 type Props = {
-   location: string,
-   setLocation: Dispatch<SetStateAction<string | null>>
+   mapType: string,
+   setMapType: Dispatch<SetStateAction<string | null>>
 }
 
-const LocationDropdown = ({ location, setLocation }: Props) => {
+const MapTypeDropdown = ({ mapType, setMapType }: Props) => {
    return (
-      <Select value={location} onValueChange={(value) => setLocation(value)}>
+      <Select value={mapType} onValueChange={(value) => setMapType(value)}>
          <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Main cities" />
          </SelectTrigger >
@@ -36,4 +36,4 @@ const cities = [
   "Brasília",
 ];
 
-export default LocationDropdown
+export default MapTypeDropdown
