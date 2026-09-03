@@ -13,7 +13,8 @@ import MapTypeDropdown from "./components/dropdowns/map-type-dropdown"
 function App() {
 
   const [coordinates, setCoords] = useState<Coords>({lat: 25, lon: 25})
-  const [location, setLocation] = useState<string | null>("Brasília")
+  const [location, setLocation] = useState<string | null>(null)
+  const [mapType, setMapType] = useState<string | null>(null)
 
   const {data} = useQuery({
     queryKey: ['geocode', location],
@@ -34,11 +35,11 @@ function App() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex gap-2">
-        <LocationDropdown location={location ?? "Brasília"} setLocation={setLocation} />
-        <MapTypeDropdown />
+      <div className="flex gap-8">
+        <LocationDropdown location={location ?? ""} setLocation={setLocation} />
+        <MapTypeDropdown mapType={mapType} setMapType={setMapType} />
       </div>
-      <Map coords={coords} onMapClick={onMapClick}/>
+      <Map coords={coords} onMapClick={onMapClick} mapType={mapType ?? "clouds_new"} />
       <CurrentWeather coords={coords} />
       <HourlyForecast coords={coords}/>
       <DailyForecast coords={coords}/>
