@@ -9,7 +9,7 @@ type Props = {
 const MapTypeDropdown = ({ mapType, setMapType }: Props) => {
    return (
       <Select value={mapType} onValueChange={(value) => setMapType(value)}>
-         <SelectTrigger className="w-[180px]">
+         <SelectTrigger className="w-45">
             <SelectValue placeholder="Map types" className="capitalize">
                {mapType?.split('_')[0]}
             </SelectValue>
