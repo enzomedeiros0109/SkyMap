@@ -16,7 +16,7 @@ const Map = ({ coords, onMapClick, mapType }: Props) => {
          center={[lat, lon]}
          zoom={5}
          scrollWheelZoom={false}
-         style={{ width: '700px', height: '500px' }}
+         style={{ width: '1000px', height: '500px' }}
       >
 
          <MapClick onMapClick={onMapClick} coords={coords} />
