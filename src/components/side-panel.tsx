@@ -5,6 +5,9 @@ import { Suspense } from "react"
 import Card from "./cards/card"
 import { Slider } from "./ui/slider"
 import clsx from "clsx"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import Info from '/src/assets/info.svg?react'
+
 
 type Props = {
    coords: Coords
@@ -31,7 +34,24 @@ function AirPollution({ coords }: Props) {
          <h1 className="text-2xl font-semibold">Air Pollution</h1>
          <div className="flex items-baseline gap-2">
             <h1 className="text-5xl font-semibold">{data.list[0].main.aqi}</h1>
-            <h1 className="text-3xl font-semibold">AQI</h1>
+            <div className="flex items-center gap-2">
+               <h1 className="text-3xl font-semibold">AQI</h1>
+               <Tooltip>
+                  <TooltipTrigger>
+                     <Info className="size-4 invert" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                     <p className="text-sm max-w-xs wrap-break-word whitespace-pre-line">
+                        {`Air Quality Index. Possible values: 1, 2, 3, 4, 5.
+                           1 = Good
+                           2 = Fair
+                           3 = Moderate
+                           4 = Poor
+                           5 = Very Poor`}
+                     </p>
+                  </TooltipContent>
+               </Tooltip>
+            </div>
          </div>
 
          {Object.entries(data.list[0].components).map(([key, value]) => {

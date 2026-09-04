@@ -15,6 +15,7 @@ import DailyForecastSkeleton from "./components/skeletons/daily-forecast-skeleto
 import HourlyForecastSkeleton from "./components/skeletons/hourly-forecast-skeleton"
 import AdditionalInfoSkeleton from "./components/skeletons/additional-weather-info-skeleton"
 import SidePanel from "./components/side-panel"
+import { TooltipProvider } from "./components/ui/tooltip"
 
 function App() {
 
@@ -69,7 +70,9 @@ function App() {
           <AdditionalInfo coords={coords} />
         </Suspense>
       </div>
-      <SidePanel coords={coords}/>
+      <TooltipProvider>
+        <SidePanel coords={coords}/>
+      </TooltipProvider>
     </>
   )
 }
