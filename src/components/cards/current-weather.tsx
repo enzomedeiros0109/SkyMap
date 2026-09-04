@@ -37,7 +37,7 @@ const CurrentWeather = ({ coords }: Props) => {
                minute: '2-digit',
                hour12: true,
                timeZone: data.timezone
-            }).format(new Date(data.current.dt))}
+            }).format(new Date(data.current.dt * 1000))} { /* Converts from ms to seconds */ }
             </h3>
          </div>
 
