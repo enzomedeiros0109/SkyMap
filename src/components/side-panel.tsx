@@ -10,6 +10,7 @@ import Info from '/src/assets/info.svg?react'
 import { Button } from "./ui/button"
 import Hamburger from '../assets/hamburger-menu.svg?react'
 import DoubleArrow from '../assets/double-arrow.svg?react'
+import SidePanelSkeleton from "./skeletons/side-panel/SidePanelSkeleton"
 
 
 type Props = {
@@ -45,7 +46,7 @@ const SidePanel = (props: Props) => {
             />
          </Button>
          <div className="h-full shadow-md bg-sidebar py-8 px-4 overflow-y-scroll">
-            <Suspense>
+            <Suspense fallback={<SidePanelSkeleton/>}>
                <AirPollution {...props} />
             </Suspense>
          </div>
