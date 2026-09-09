@@ -6,6 +6,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+
+  --sidebar-width: 23rem;
+
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #242424;

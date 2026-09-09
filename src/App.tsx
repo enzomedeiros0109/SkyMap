@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 p-8 w-full lg:w-[cal(100dvw-var(--sidebar-width))]">
         <div className="pt-8 flex gap-8 justify-center">
           <div className="flex gap-4 items-center lg:flex-col lg:gap-4">
             <h1 className="text-1xl font-semibold">Location</h1>
@@ -55,22 +55,39 @@ function App() {
             <MapTypeDropdown mapType={mapType} setMapType={setMapType} />
           </div>
         </div>
-        <div className="relative">
-          <Map coords={coords} onMapClick={onMapClick} mapType={mapType ?? ""} />
-          <MapLegend mapType={mapType} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div className="relative col-span-1 md:col-span-2">
+            <Map coords={coords} onMapClick={onMapClick} mapType={mapType ?? ""} />
+            <MapLegend mapType={mapType} />
+          </div>
+
+          <div className="col-span-1">
+            <Suspense fallback={<CurrentWeatherSkeleton />}>
+              <CurrentWeather coords={coords} />
+            </Suspense>
+          </div>
+
+          <div className="col-span-1">
+            <Suspense fallback={<DailyForecastSkeleton />}>
+              <DailyForecast coords={coords} />
+            </Suspense>
+          </div>
+
+          <div className="col-span-1 md:col-span-2">
+            <Suspense fallback={<HourlyForecastSkeleton/>}>
+              <HourlyForecast coords={coords} />
+            </Suspense>
+          </div>
+
+
+          <div className="col-span-1 md:col-span-2">
+            <Suspense fallback={<AdditionalInfoSkeleton/>}>
+              <AdditionalInfo coords={coords} />
+            </Suspense>
+          </div>
+
         </div>
-        <Suspense fallback={<CurrentWeatherSkeleton />}>
-          <CurrentWeather coords={coords} />
-        </Suspense>
-        <Suspense fallback={<HourlyForecastSkeleton/>}>
-          <HourlyForecast coords={coords} />
-        </Suspense>
-        <Suspense fallback={<DailyForecastSkeleton />}>
-          <DailyForecast coords={coords} />
-        </Suspense>
-        <Suspense fallback={<AdditionalInfoSkeleton/>}>
-          <AdditionalInfo coords={coords} />
-        </Suspense>
       </div>
       <TooltipProvider>
         <SidePanel coords={coords} isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen}/>

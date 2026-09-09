@@ -19,6 +19,7 @@ const CurrentWeather = ({ coords }: Props) => {
       <Card
          title='Current Weather'
          childrenClassName='flex flex-col items-center gap-6'
+         className='md:pb-9'
       >
          <div className='flex flex-col gap-2 items-center'>
             <h2 className='text-6xl font-semibold text-center'>{Math.round(data.current.temp)}°C</h2>

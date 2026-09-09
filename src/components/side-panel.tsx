@@ -24,7 +24,7 @@ const SidePanel = (props: Props) => {
    return (
       <div
          className={clsx(
-            "fixed top-0 right-0 h-screen w-90 z-1001 transition-transform duration-500",
+            "fixed top-0 right-0 h-screen w-(--sidebar-width) z-1001 transition-transform duration-500",
             isSidePanelOpen ? 'translate-x-0' : 'translate-x-full'
          )}
       >
