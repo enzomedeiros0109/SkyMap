@@ -1,5 +1,5 @@
-import Card from "../cards/card"
-import { Skeleton } from "../ui/skeleton"
+import Card from "../../cards/card"
+import { Skeleton } from "../../ui/skeleton"
 
 const CurrentWeatherSkeleton = () => {
   return (
