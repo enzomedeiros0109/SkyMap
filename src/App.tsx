@@ -17,11 +17,13 @@ import AdditionalInfoSkeleton from "./components/skeletons/additional-weather-in
 import SidePanel from "./components/side-panel"
 import { TooltipProvider } from "./components/ui/tooltip"
 
+
 function App() {
 
   const [coordinates, setCoords] = useState<Coords>({ lat: 25, lon: 25 })
   const [location, setLocation] = useState<string | null>(null)
   const [mapType, setMapType] = useState<string | null>(null)
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true)
 
   const { data } = useQuery({
     queryKey: ['geocode', location],
@@ -71,7 +73,7 @@ function App() {
         </Suspense>
       </div>
       <TooltipProvider>
-        <SidePanel coords={coords}/>
+        <SidePanel coords={coords} isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen}/>
       </TooltipProvider>
     </>
   )

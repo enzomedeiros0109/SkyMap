@@ -1,24 +1,54 @@
 import { getAirPollution } from "@/api/api"
 import type { Coords } from "@/types"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { Suspense } from "react"
+import { Suspense, type Dispatch, type SetStateAction } from "react"
 import Card from "./cards/card"
 import { Slider } from "./ui/slider"
 import clsx from "clsx"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import Info from '/src/assets/info.svg?react'
+import { Button } from "./ui/button"
+import Hamburger from '../assets/hamburger-menu.svg?react'
+import DoubleArrow from '../assets/double-arrow.svg?react'
 
 
 type Props = {
    coords: Coords
+   isSidePanelOpen: boolean,
+   setIsSidePanelOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const SidePanel = (props: Props) => {
+   const { isSidePanelOpen, setIsSidePanelOpen } = props
    return (
-      <div className="fixed top-0 right-0 h-screen w-90 shadow-md bg-sidebar z-1001 py-8 px-4 overflow-y-scroll">
-         <Suspense>
-            <AirPollution {...props} />
-         </Suspense>
+      <div
+         className={clsx(
+            "fixed top-0 right-0 h-screen w-90 z-1001 transition-transform duration-500",
+            isSidePanelOpen ? 'translate-x-0' : 'translate-x-full'
+         )}
+      >
+         <Button
+            onClick={() => setIsSidePanelOpen(prev => !prev)}
+            className="top-8 -left-12 size-12 z-1002 rotate-180 shrink-0 absolute cursor-pointer"
+         >
+            <Hamburger
+               className={clsx(
+                  "absolute inset-0 m-auto size-8 transition-all duration-500",
+                  isSidePanelOpen ? "opacity-0 scale-50 rotate-180" : "opacity-100 scale-100 rotate-0"
+               )}
+            />
+            <DoubleArrow
+               className={clsx(
+                  "absolute inset-0 m-auto size-8 transition-all duration-500",
+                  isSidePanelOpen ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 -rotate-180"
+               )}
+            />
+         </Button>
+         <div className="h-full shadow-md bg-sidebar py-8 px-4 overflow-y-scroll">
+            <Suspense>
+               <AirPollution {...props} />
+            </Suspense>
+         </div>
       </div>
    )
 }
@@ -185,14 +215,14 @@ export const airQualityRanges: Record<string, AirQualityRange> = {
 type Pollutant = "SO2" | "NO2" | "PM10" | "PM2_5" | "O3" | "CO" | "NO" | "NH3"
 
 const pollutantNames: Record<Pollutant, string> = {
-  SO2: "Sulfur dioxide",
-  NO2: "Nitrogen dioxide",
-  PM10: "Particulate matter (PM10)",
-  PM2_5: "Fine particulate matter (PM2.5)",
-  O3: "Ozone",
-  CO: "Carbon monoxide",
-  NO: "Nitric oxide",
-  NH3: "Ammonia",
+   SO2: "Sulfur dioxide",
+   NO2: "Nitrogen dioxide",
+   PM10: "Particulate matter (PM10)",
+   PM2_5: "Fine particulate matter (PM2.5)",
+   O3: "Ozone",
+   CO: "Carbon monoxide",
+   NO: "Nitric oxide",
+   NH3: "Ammonia",
 };
 
 export default SidePanel
