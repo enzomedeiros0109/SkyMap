@@ -3,7 +3,8 @@ import 'leaflet/dist/leaflet.css'
 import type { Coords } from "../types"
 import { API_KEY } from "@/api/api"
 import { useEffect } from "react"
-import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+import { MapStyle, MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+import { useTheme } from "./ThemeProvider"
 
 type Props = {
    coords: Coords
@@ -53,13 +54,17 @@ function MapClick({ onMapClick, coords }: {
 function MapTileLayer(){
 
    const map = useMap()
+   const { theme } = useTheme()
 
    useEffect(() => {
-      const tileLayer = new MaptilerLayer({style: 'basic-dark', apiKey: `${MAP_TILE_API_KEY}`})
+      const tileLayer = new MaptilerLayer({
+         style: theme === 'light' ? MapStyle.DATAVIZ.LIGHT : 'basic-dark',
+         apiKey: MAP_TILE_API_KEY
+      })
       tileLayer.addTo(map)
 
       return () => {map.removeLayer(tileLayer)}
-   }, [])
+   }, [map, theme])
 
    return null
 }

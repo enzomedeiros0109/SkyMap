@@ -15,7 +15,7 @@ const AdditionalInfoSkeleton = () => {
   return (
     <Card
       title='Addtional Weather Info'
-      childrenClassName="flex flex-col gap-8"
+      childrenClassName="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:justify-between"
     >
       {rows.map((row, index) => (
         <div

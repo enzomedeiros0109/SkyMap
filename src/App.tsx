@@ -16,6 +16,7 @@ import HourlyForecastSkeleton from "./components/skeletons/main-page/hourly-fore
 import AdditionalInfoSkeleton from "./components/skeletons/main-page/additional-weather-info-skeleton"
 import SidePanel from "./components/side-panel"
 import { TooltipProvider } from "./components/ui/tooltip"
+import LightDarkToggle from "./components/LightDarkToggle"
 
 
 function App() {
@@ -45,7 +46,10 @@ function App() {
   return (
     <>
       <div className="flex flex-col gap-8 p-8 w-full lg:w-[cal(100dvw-var(--sidebar-width))] 2xl:h-screen">
-        <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
+        <div className="flex justify-start">
+          <LightDarkToggle />
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center">
           <div className="flex gap-4 lg:flex-col lg:gap-2 items-center">
             <h1 className="text-1xl font-semibold">Location</h1>
             <LocationDropdown location={location ?? ""} setLocation={setLocation} />
@@ -55,9 +59,6 @@ function App() {
             <MapTypeDropdown mapType={mapType} setMapType={setMapType} />
           </div>
         </div>
-
-
-
 
         <div className="grid grid-cols-1 2xl:flex-1 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
           <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2 order-1 ">
@@ -78,14 +79,14 @@ function App() {
           </div>
 
           <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-4 2xl:order-3">
-            <Suspense fallback={<HourlyForecastSkeleton/>}>
+            <Suspense fallback={<HourlyForecastSkeleton />}>
               <HourlyForecast coords={coords} />
             </Suspense>
           </div>
 
 
           <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-5">
-            <Suspense fallback={<AdditionalInfoSkeleton/>}>
+            <Suspense fallback={<AdditionalInfoSkeleton />}>
               <AdditionalInfo coords={coords} />
             </Suspense>
           </div>
@@ -93,7 +94,7 @@ function App() {
         </div>
       </div>
       <TooltipProvider>
-        <SidePanel coords={coords} isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen}/>
+        <SidePanel coords={coords} isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen} />
       </TooltipProvider>
     </>
   )
