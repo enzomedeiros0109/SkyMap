@@ -29,7 +29,7 @@
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
-  background: var(--bg);
+  background: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +43,7 @@
 
   --foreground: oklch(0.145 0 0);
 
-  --card: oklch(1 0 0);
+  --card: oklch(0.9 0 0);
 
   --card-foreground: oklch(0.145 0 0);
 
@@ -176,6 +176,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.dark svg {
+  filter: invert(1)
 }
 
 @layer base {

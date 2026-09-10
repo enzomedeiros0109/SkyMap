@@ -30,17 +30,17 @@ const SidePanel = (props: Props) => {
       >
          <Button
             onClick={() => setIsSidePanelOpen(prev => !prev)}
-            className="top-8 -left-8 sm:-left-12 size-8 sm:size-12 z-1002 rotate-180 shrink-0 absolute cursor-pointer"
+            className="mt-4 -left-10 sm:-left-12 size-10 sm:size-12 z-1002 rotate-180 shrink-0 absolute cursor-pointer bg-card  hover:bg-card-foreground/30"
          >
             <Hamburger
                className={clsx(
-                  "absolute inset-0 m-auto size-4 transition-all duration-500 sm:size-8",
+                  "absolute inset-0 m-auto size-6 transition-all duration-500 sm:size-8",
                   isSidePanelOpen ? "opacity-0 scale-50 rotate-180" : "opacity-100 scale-100 rotate-0"
                )}
             />
             <DoubleArrow
                className={clsx(
-                  "absolute inset-0 m-auto size-4 transition-all duration-500 sm:size-8",
+                  "absolute inset-0 m-auto size-6 transition-all duration-500 sm:size-8",
                   isSidePanelOpen ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 -rotate-180"
                )}
             />
@@ -70,7 +70,7 @@ function AirPollution({ coords }: Props) {
                <h1 className="text-3xl font-semibold">AQI</h1>
                <Tooltip>
                   <TooltipTrigger>
-                     <Info className="size-4 invert" />
+                     <Info className="size-4" />
                   </TooltipTrigger>
                   <TooltipContent>
                      <p className="text-sm max-w-xs wrap-break-word whitespace-pre-line">
@@ -129,7 +129,7 @@ function AirPollution({ coords }: Props) {
                         <span className="text-lg font-bold capitalize">{key}</span>
                         <Tooltip>
                            <TooltipTrigger>
-                              <Info className="size-4 invert" />
+                              <Info className="size-4" />
                            </TooltipTrigger>
                            <TooltipContent>
                               <p className="text-sm max-w-xs wrap-break-word whitespace-pre-line">
@@ -149,7 +149,7 @@ function AirPollution({ coords }: Props) {
                      <p>{max}</p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row justify-between select-none">
+                  <div className="flex flex-col gap-1 sm:flex-row justify-between select-none">
                      {Object.keys(pollutant).reverse().map((quality) => (
                         <span className={clsx("px-2 py-1 rounded-md text-xs font-medium", quality === currentLevel ? qualityColor : 'bg-muted text-muted-foreground')}
                         >
