@@ -6,6 +6,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+
+  --sidebar-width: 23rem;
+
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #242424;
@@ -138,6 +141,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --breakpoint-xs: 375px;
 }
 
 .dark {

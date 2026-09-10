@@ -24,23 +24,23 @@ const SidePanel = (props: Props) => {
    return (
       <div
          className={clsx(
-            "fixed top-0 right-0 h-screen w-90 z-1001 transition-transform duration-500",
+            "fixed top-0 right-0 h-screen sm:w-(--sidebar-width) w-50 z-1001 transition-transform duration-500",
             isSidePanelOpen ? 'translate-x-0' : 'translate-x-full'
          )}
       >
          <Button
             onClick={() => setIsSidePanelOpen(prev => !prev)}
-            className="top-8 -left-12 size-12 z-1002 rotate-180 shrink-0 absolute cursor-pointer"
+            className="top-8 -left-8 sm:-left-12 size-8 sm:size-12 z-1002 rotate-180 shrink-0 absolute cursor-pointer"
          >
             <Hamburger
                className={clsx(
-                  "absolute inset-0 m-auto size-8 transition-all duration-500",
+                  "absolute inset-0 m-auto size-4 transition-all duration-500 sm:size-8",
                   isSidePanelOpen ? "opacity-0 scale-50 rotate-180" : "opacity-100 scale-100 rotate-0"
                )}
             />
             <DoubleArrow
                className={clsx(
-                  "absolute inset-0 m-auto size-8 transition-all duration-500",
+                  "absolute inset-0 m-auto size-4 transition-all duration-500 sm:size-8",
                   isSidePanelOpen ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 -rotate-180"
                )}
             />
@@ -149,7 +149,7 @@ function AirPollution({ coords }: Props) {
                      <p>{max}</p>
                   </div>
 
-                  <div className="flex justify-between select-none">
+                  <div className="flex flex-col sm:flex-row justify-between select-none">
                      {Object.keys(pollutant).reverse().map((quality) => (
                         <span className={clsx("px-2 py-1 rounded-md text-xs font-medium", quality === currentLevel ? qualityColor : 'bg-muted text-muted-foreground')}
                         >

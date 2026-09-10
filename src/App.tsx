@@ -23,7 +23,7 @@ function App() {
   const [coordinates, setCoords] = useState<Coords>({ lat: 25, lon: 25 })
   const [location, setLocation] = useState<string | null>(null)
   const [mapType, setMapType] = useState<string | null>(null)
-  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true)
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(false)
 
   const { data } = useQuery({
     queryKey: ['geocode', location],
@@ -44,33 +44,53 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col gap-8">
-        <div className="pt-8 flex gap-8 justify-center">
-          <div className="flex gap-4 items-center lg:flex-col lg:gap-4">
+      <div className="flex flex-col gap-8 p-8 w-full lg:w-[cal(100dvw-var(--sidebar-width))] 2xl:h-screen">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
+          <div className="flex gap-4 lg:flex-col lg:gap-2 items-center">
             <h1 className="text-1xl font-semibold">Location</h1>
             <LocationDropdown location={location ?? ""} setLocation={setLocation} />
           </div>
-          <div className="flex gap-4 items-center lg:flex-col lg:gap-4">
-            <h1 className="text-1xl font-semibold ">Map Type</h1>
+          <div className="flex gap-4 items-center lg:flex-col lg:gap-2">
+            <h1 className="text-1xl font-semibold whitespace-nowrap">Map Type</h1>
             <MapTypeDropdown mapType={mapType} setMapType={setMapType} />
           </div>
         </div>
-        <div className="relative">
-          <Map coords={coords} onMapClick={onMapClick} mapType={mapType ?? ""} />
-          <MapLegend mapType={mapType} />
+
+
+
+
+        <div className="grid grid-cols-1 2xl:flex-1 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
+          <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2 order-1 ">
+            <Map coords={coords} onMapClick={onMapClick} mapType={mapType ?? ""} />
+            <MapLegend mapType={mapType} />
+          </div>
+
+          <div className="col-span-1 2xl:row-span-2 order-2">
+            <Suspense fallback={<CurrentWeatherSkeleton />}>
+              <CurrentWeather coords={coords} />
+            </Suspense>
+          </div>
+
+          <div className="col-span-1 order-3 2xl:order-4 2xl:row-span-2">
+            <Suspense fallback={<DailyForecastSkeleton />}>
+              <DailyForecast coords={coords} />
+            </Suspense>
+          </div>
+
+          <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-4 2xl:order-3">
+            <Suspense fallback={<HourlyForecastSkeleton/>}>
+              <HourlyForecast coords={coords} />
+            </Suspense>
+          </div>
+
+
+          <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-5">
+            <Suspense fallback={<AdditionalInfoSkeleton/>}>
+              <AdditionalInfo coords={coords} />
+            </Suspense>
+          </div>
+
         </div>
-        <Suspense fallback={<CurrentWeatherSkeleton />}>
-          <CurrentWeather coords={coords} />
-        </Suspense>
-        <Suspense fallback={<HourlyForecastSkeleton/>}>
-          <HourlyForecast coords={coords} />
-        </Suspense>
-        <Suspense fallback={<DailyForecastSkeleton />}>
-          <DailyForecast coords={coords} />
-        </Suspense>
-        <Suspense fallback={<AdditionalInfoSkeleton/>}>
-          <AdditionalInfo coords={coords} />
-        </Suspense>
       </div>
       <TooltipProvider>
         <SidePanel coords={coords} isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen}/>
